@@ -15,15 +15,12 @@ test:
   database: your_app_test
 
 production:
-  <<: *default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: <%= ENV['PGDATABASE'] %>
-  username: <%= ENV['PGUSER'] %>
-  password: <%= ENV['PGPASSWORD'] %>
-  host: <%= ENV['PGHOST'] %>
-  port: <%= ENV['PGPORT'] %>
+  primary:
+    url: <%= ENV['DATABASE_URL'] %>
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  cable:
+    url: <%= ENV['DATABASE_URL'] %>
+    channel_prefix: your_app_production
 
   # Replace your_postgres_user, your_postgres_password, and your_app_development 
   # with your actual PostgreSQL username, password, and database names.
