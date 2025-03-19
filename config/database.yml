@@ -21,6 +21,9 @@ production:
   cable:
     url: <%= ENV['DATABASE_URL'] %>
     channel_prefix: your_app_production
+  queue:
+    url: <%= ENV['DATABASE_URL'] %>
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
   # Replace your_postgres_user, your_postgres_password, and your_app_development 
   # with your actual PostgreSQL username, password, and database names.
